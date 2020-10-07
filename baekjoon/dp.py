@@ -1,0 +1,2 @@
+project="we"
+print(project)
