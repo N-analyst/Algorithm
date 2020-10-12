@@ -691,18 +691,117 @@
 #
 #     print(solution(func,arr,arr_len))
 
+# 1021번(회전하는 큐)
+# from collections import deque
+#
+# N,M=map(int,input().split())
+# q=deque([i for i in range(1,N+1)])
+# extract=map(int,input().split())
+# ans=0
+# for num in extract:
+#     if q[0]!=num:
+#         find_idx=q.index(num)
+#         size=len(q)
+#
+#         front=find_idx
+#         back=size-find_idx
+#         if front<=back:
+#             for _ in range(front):
+#                 q.append(q.popleft())
+#                 ans+=1
+#         else:
+#             for _ in range(back):
+#                 q.appendleft(q.pop())
+#                 ans+=1
+#
+#     #가장 앞 번호 빼기
+#     q.popleft()
+# print(ans)
 
 
+# 11286번(절댓값 힙)
+# import heapq
+# import sys
+#
+# heap=[]
+# N=int(input())
+# for _ in range(N):
+#     num=int(sys.stdin.readline().rstrip())
+#     if num!=0:
+#         # 우선 순위를 튜플로 저장하여 넣는다.
+#         heapq.heappush(heap,(abs(num),num))
+#     else:
+#         # 두번째 있는 원소가 본래의 값
+#         print( heapq.heappop(heap)[1] if heap else 0)
 
+# 7569번(토마토)   //파이썬에서 클래스를 만들어서 문제를 풀면 시간이 많이 드는지 확인해보기
+# from collections import deque
+# import sys
+# 
+# class Point:
+#     def __init__(self,k,i,j,day):
+#         self.i=i
+#         self.j=j
+#         self.k=k
+#         self.day=day
+# 
+# def bfs(tomato,ripe_tomato,zero_cnt,M,N,H):
+#     dir=[(0,1,0),(0,-1,0),(0,0,1),(0,0,-1),(1,0,0),(-1,0,0)]
+#     dq=deque()
+#     for (k,i,j) in ripe_tomato:
+#         dq.appendleft(Point(k,i,j,0))
+# 
+#     complete_day=0
+#     ripe_cnt=0
+# 
+#     while dq:
+#         P=dq.pop()
+#         day=P.day
+# 
+#         if complete_day<day: complete_day=day
+# 
+#         for d in dir:
+#             nk=P.k+d[0]
+#             ni=P.i+d[1]
+#             nj=P.j+d[2]
+#             if 0<=nk<H and 0<=ni<N and 0<=nj<M:
+#                 if tomato[nk][ni][nj]==0:
+#                     dq.appendleft(Point(nk,ni,nj,day+1))
+#                     tomato[nk][ni][nj]=1
+#                     ripe_cnt+=1
+# 
+#     return complete_day if zero_cnt-ripe_cnt==0 else -1
+# 
+# 
+# 
+# M,N,H=map(int,input().split())
+# # N행, M 열 , H 깊이
+# tomato=[[[] for i in range(N)] for k in range(H)]
+# 
+# for k in range(H):
+#     for i in range(N):
+#         tomato_input=map(int,sys.stdin.readline().rstrip().split())
+#         tomato[k][i].extend(tomato_input)
+# 
+# # 인덱스 순서는 [깊이][행][열] 순. [H][N][M]
+# ripe_tomato=[]
+# 
+# zero_cnt=0
+# for k,k_v in enumerate(tomato):
+#     for i,i_v in enumerate(k_v):
+#         for j,j_v in enumerate(i_v):
+#             if j_v==1:
+#                 ripe_tomato.append((k,i,j))
+#             elif j_v==0:
+#                 zero_cnt+=1
+# 
+# if zero_cnt==0:
+#     print(0)
+#     exit(0)
+# 
+# print(bfs(tomato,ripe_tomato,zero_cnt,M,N,H))
 
-
-
-
-
-
-
-
-
+# next
 
 
 
