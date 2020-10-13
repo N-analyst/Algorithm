@@ -734,7 +734,8 @@
 #         # 두번째 있는 원소가 본래의 값
 #         print( heapq.heappop(heap)[1] if heap else 0)
 
-# 7569번(토마토)   //파이썬에서 클래스를 만들어서 문제를 풀면 시간이 많이 드는지 확인해보기
+# 7569번(토마토)
+# //파이썬에서 클래스를 만들어서 문제를 풀면 시간이 많이 드는지 확인해보기(그냥 튜플로하면 더 빠르긴 함)
 # from collections import deque
 # import sys
 # 
@@ -801,7 +802,115 @@
 # 
 # print(bfs(tomato,ripe_tomato,zero_cnt,M,N,H))
 
-# next
+# 11279번(최대 힙)
+# import heapq
+# import sys
+#
+# N=int(input())
+# pq=[]
+#
+# for _ in range(N):
+#     num=int(sys.stdin.readline().rstrip())
+#
+#     if num==0:
+#         if pq:
+#             print(-heapq.heappop(pq))
+#         else:
+#             print(0)
+#     else:
+#         heapq.heappush(pq,(-num))
+
+# 1927번(최소 힙)
+# import heapq
+# import sys
+#
+# N=int(input())
+# pq=[]
+#
+# for _ in range(N):
+#     num=int(sys.stdin.readline().rstrip())
+#
+#     if num==0:
+#         if pq:
+#             print(heapq.heappop(pq))
+#         else:
+#             print(0)
+#     else:
+#         heapq.heappush(pq,num)
+
+# 1655번(가운데를 말해요)
+# import heapq,sys
+#
+# N=int(input())
+# left,right=[],[]
+#
+# for _ in range(N):
+#     num=int(sys.stdin.readline().rstrip())
+#
+#     # 배열의 길이가 짝수이면 최대힙에서 꺼낸다.
+#     if len(left)==len(right):
+#         # max_heap
+#         heapq.heappush(left,(-num,num))
+#     else:
+#         # min_heap
+#         heapq.heappush(right,(num,num))
+#
+#
+#     # 오른쪽 값이 존재하고 왼쪽 값이 오른쪽 값보다 큰경우
+#     if right and left[0][1]>right[0][1]:
+#         left_v=heapq.heappop(left)[1]
+#         right_v=heapq.heappop(right)[1]
+#         heapq.heappush(right,(left_v,left_v))
+#         heapq.heappush(left,(-right_v,right_v))
+#
+#     print(left[0][1])
+
+# 1260번(DFS와 BFS)
+# from collections import deque
+#
+# N,M,V=map(int,input().split())
+# node=[[] for _ in range(N+1)]
+# visited=[0 for _ in range(N+1)]
+#
+# for _ in range(M):
+#     a,b=map(int,input().split())
+#     node[a].append(b)
+#     node[b].append(a)
+#
+# for i in range(1,N+1):
+#     node[i].sort()
+#
+#
+# def dfs(i):
+#     visited[i]=1
+#     print(i,end=' ')
+#
+#     for next_node in node[i]:
+#         if visited[next_node]==0:
+#             dfs(next_node)
+#
+#
+# def bfs(i):
+#     visited=[0 for _ in range(N+1)]
+#     q=deque()
+#     q.appendleft(i)
+#     visited[i]=1
+#
+#     while q:
+#         cur=q.pop()
+#         print(cur,end=' ')
+#
+#         for next_node in node[cur]:
+#             if visited[next_node]==0:
+#                 q.appendleft(next_node)
+#                 visited[next_node]=1
+#
+# dfs(V)
+# print()
+# bfs(V)
+
+
+
 
 
 
