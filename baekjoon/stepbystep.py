@@ -909,7 +909,75 @@
 # print()
 # bfs(V)
 
+# 1012번(유기농 배추)
+# from collections import deque
+# import sys
+#
+# def bfs(i,j):
+#     q=deque()
+#     q.appendleft((i,j))
+#     field[i][j]=0
+#
+#     while q:
+#         x,y=q.pop()
+#
+#         for d in dir:
+#             nx=x+d[0]
+#             ny=y+d[1]
+#             if 0<= nx < N and 0<= ny < M:
+#                 if field[nx][ny]==1:
+#                     q.appendleft((nx,ny))
+#                     field[nx][ny]=0
+#
+# T=int(input())
+# dir=[[0,-1],[0,1],[1,0],[-1,0]]
+# for _ in range(T):
+#     M,N,K=map(int,sys.stdin.readline().rstrip().split())
+#     field=[[ 0 for _ in range(M)] for _ in range(N)]
+#
+#     # K개의 입력을 받는다
+#     for _ in range(K):
+#         j,i=map(int,sys.stdin.readline().rstrip().split())
+#         field[i][j]=1
+#
+#     cnt=0
+#     for i in range(N):
+#         for j in range(M):
+#             if field[i][j]==1:
+#                 bfs(i,j)
+#                 cnt+=1
+#
+#     print(cnt)
 
-
-
-
+# 2178번(미로 탐색)
+# from collections import deque
+# def bfs(i,j):
+#     q=deque()
+#     visited=[[0 for _ in range(M)] for _ in range(N)]
+#     dir = [[0, -1], [0, 1], [1, 0], [-1, 0]]
+#     q.appendleft((i,j,1))
+#     visited[i][j]=1
+#
+#     while q:
+#         x,y,move=q.pop()
+#
+#         if x==N-1 and y==M-1: return move
+#
+#         for d in dir:
+#             nx=x+d[0]
+#             ny=y+d[1]
+#
+#             if 0<=nx<N and 0<=ny<M:
+#                 if maze[nx][ny]=='1' and visited[nx][ny]==0:
+#                     q.appendleft((nx,ny,move+1))
+#                     visited[nx][ny]=1
+#
+#     return -1
+#
+# N,M=map(int,input().split())
+# maze=[]
+# for _ in range(N):
+#     maze.append(list(input()))
+#
+# # 시작은 (0,0) / 종료 (N-1,M-1)
+# print(bfs(0,0))
