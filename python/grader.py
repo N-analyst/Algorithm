@@ -169,6 +169,7 @@ def grade(folder_path):
 
 
 if __name__ == "__main__":
+    # python grader.py <폴더 경로>
     target_folder = sys.argv[1] if len(sys.argv) > 1 else "."
 
     if not os.path.exists(target_folder):
