@@ -1,3 +1,4 @@
+# 2309번: 일곱 난쟁이
 import sys
 from itertools import combinations
 
